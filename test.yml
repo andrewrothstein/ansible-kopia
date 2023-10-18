@@ -1,0 +1,11 @@
+---
+- hosts: all
+  roles:
+    - role: '{{ playbook_dir }}'
+  tasks:
+    - command: kopia --version
+      register: kopia_test_output
+    - name: kopia --version
+      debug:
+        msg: '{{ kopia_test_output.stdout }}'
+

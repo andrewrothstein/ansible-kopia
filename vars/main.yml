@@ -1,0 +1,13 @@
+---
+# vars file for kopia
+kopia_os: '{{ kopia_os_map[ansible_system] }}'
+kopia_arch: '{{ kopia_arch_map[ansible_architecture] }}'
+kopia_platform: '{{ kopia_os }}-{{ kopia_arch }}'
+kopia_name: kopia-{{ kopia_ver }}-{{ kopia_platform }}
+kopia_archive: '{{ kopia_name }}.{{ kopia_archive_type | default("tar.gz") }}'
+kopia_url: '{{ kopia_mirror }}/v{{ kopia_ver }}/{{ kopia_archive }}'
+kopia_checksum: '{{ kopia_checksums[kopia_ver][kopia_platform] }}'
+kopia_tmp_archive: '{{ kopia_tmp_dir | default("/tmp") }}/{{ kopia_archive }}'
+kopia_install_dir: '{{ kopia_parent_install_dir }}/{{ kopia_name }}'
+kopia_install_exe: '{{ kopia_install_dir }}/kopia'
+kopia_link: '{{ kopia_parent_install_dir }}/bin/kopia'

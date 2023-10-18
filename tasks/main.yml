@@ -1,0 +1,52 @@
+---
+- include_role:
+    name: andrewrothstein.unarchivedeps
+- name: resolve platform specific vars
+  include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+- name: check for install at {{ kopia_install_exe }}
+  become: true
+  stat:
+    path: '{{ kopia_install_exe }}'
+  register: kopia_binary
+- when: not kopia_binary.stat.exists
+  block:
+    - name: downloading {{ kopia_url }} to {{ kopia_tmp_archive }}
+      become: true
+      become_user: root
+      get_url:
+        url: '{{ kopia_url }}'
+        dest: '{{ kopia_tmp_archive }}'
+        checksum: '{{ kopia_checksum }}'
+        mode: 0644
+    - name: unarchive {{ kopia_tmp_archive }} to {{ kopia_parent_install_dir }}
+      become: true
+      become_user: root
+      unarchive:
+        remote_src: true
+        src: '{{ kopia_tmp_archive }}'
+        dest: '{{ kopia_parent_install_dir }}'
+        creates: '{{ kopia_install_dir }}'
+  always:
+    - name: rm -rf {{ kopia_tmp_archive }}
+      become: true
+      become_user: root
+      file:
+        path: '{{ kopia_tmp_archive }}'
+        state: absent
+- name: linking {{ kopia_link }} to {{ kopia_install_exe }}
+  become: true
+  become_user: root
+  file:
+    src: '{{ kopia_install_exe }}'
+    dest: '{{ kopia_link }}'
+    state: link
+
+
