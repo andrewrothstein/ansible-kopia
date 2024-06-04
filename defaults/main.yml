@@ -1,6 +1,6 @@
 ---
 # defaults file for kopia
-kopia_ver: 0.14.1
+kopia_ver: 0.17.0
 kopia_parent_install_dir: /usr/local
 kopia_os_map:
   Linux: linux
@@ -27,3 +27,17 @@ kopia_checksums:
     macOS-x64: sha256:013453c8d68853f5f3ca230777b4bfe3acd29c17e32d4c7cafb2b8397416c1e7
     # https://github.com/kopia/kopia/releases/download/v0.14.1/kopia-0.14.1-windows-x64.zip
     windows-x64: sha256:ba29e8bd0e475ad69dcc35de92a6f2cac2cd302025d61efd177cc0769f63c385
+  # https://github.com/kopia/kopia/releases/download/v0.17.0/checksums.txt
+  '0.17.0':
+    # https://github.com/kopia/kopia/releases/download/v0.17.0/kopia-0.17.0-linux-arm.tar.gz
+    linux-arm: sha256:25804d7271a0dfe6d0821270c5640caa01da5e05a03a7c4783fd1edafb234d51
+    # https://github.com/kopia/kopia/releases/download/v0.17.0/kopia-0.17.0-linux-arm64.tar.gz
+    linux-arm64: sha256:9679415cd2717a90cb6a793aa2d4accde4059084245b27fa4807d7e13fbe40a0
+    # https://github.com/kopia/kopia/releases/download/v0.17.0/kopia-0.17.0-linux-x64.tar.gz
+    linux-x64: sha256:6851bba9f49c2ca2cabc5bec85a813149a180472d1e338fad42a8285dad047ee
+    # https://github.com/kopia/kopia/releases/download/v0.17.0/kopia-0.17.0-macOS-arm64.tar.gz
+    macOS-arm64: sha256:e81b2b7a91501b7d4f834daaec78c11f910ed1a8f50ba46ba4c9725c87787c9e
+    # https://github.com/kopia/kopia/releases/download/v0.17.0/kopia-0.17.0-macOS-x64.tar.gz
+    macOS-x64: sha256:8f0c41835b70a1c529cb6e946193785b10df1da09c5bfe3cc96a3007226b04d6
+    # https://github.com/kopia/kopia/releases/download/v0.17.0/kopia-0.17.0-windows-x64.zip
+    windows-x64: sha256:0bcfc616e52fe3847e7d0484fb6612512e926990277a37c8ced446dcce2dc6cb

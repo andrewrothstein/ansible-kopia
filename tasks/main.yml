@@ -1,8 +1,6 @@
 ---
-- include_role:
-    name: andrewrothstein.unarchivedeps
-- name: resolve platform specific vars
-  include_vars: '{{ item }}'
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
   with_first_found:
     - files:
         - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
@@ -11,42 +9,44 @@
       skip: true
       paths:
         - '{{ role_path }}/vars'
-- name: check for install at {{ kopia_install_exe }}
+- name: Check for install at {{ kopia_install_exe }}
   become: true
-  stat:
+  ansible.builtin.stat:
     path: '{{ kopia_install_exe }}'
   register: kopia_binary
-- when: not kopia_binary.stat.exists
+- name: Downloading and installing kopia
+  when: not kopia_binary.stat.exists
   block:
-    - name: downloading {{ kopia_url }} to {{ kopia_tmp_archive }}
+    - name: Downloading {{ kopia_url }} to {{ kopia_tmp_archive }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ kopia_url }}'
         dest: '{{ kopia_tmp_archive }}'
         checksum: '{{ kopia_checksum }}'
-        mode: 0644
-    - name: unarchive {{ kopia_tmp_archive }} to {{ kopia_parent_install_dir }}
+        mode: '644'
+    - name: Installing andrewrothstein.unarchivedeps
+      ansible.builtin.include_role:
+        name: andrewrothstein.unarchivedeps
+    - name: Unarchive {{ kopia_tmp_archive }} to {{ kopia_parent_install_dir }}
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ kopia_tmp_archive }}'
         dest: '{{ kopia_parent_install_dir }}'
         creates: '{{ kopia_install_dir }}'
   always:
-    - name: rm -rf {{ kopia_tmp_archive }}
+    - name: Rm -rf {{ kopia_tmp_archive }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ kopia_tmp_archive }}'
         state: absent
-- name: linking {{ kopia_link }} to {{ kopia_install_exe }}
+- name: Linking {{ kopia_link }} to {{ kopia_install_exe }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ kopia_install_exe }}'
     dest: '{{ kopia_link }}'
     state: link
-
-

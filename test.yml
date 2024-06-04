@@ -1,11 +1,13 @@
 ---
-- hosts: all
+- name: Testing andrewrothstein.kopia
+  hosts: all
   roles:
     - role: '{{ playbook_dir }}'
   tasks:
-    - command: kopia --version
+    - name: Executing 'kopia --version'
+      ansible.builtin.command: kopia --version
+      changed_when: false
       register: kopia_test_output
-    - name: kopia --version
-      debug:
+    - name: Output of 'kopia --version'
+      ansible.builtin.debug:
         msg: '{{ kopia_test_output.stdout }}'
-
