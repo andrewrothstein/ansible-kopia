@@ -1,6 +1,6 @@
 ---
 # defaults file for kopia
-kopia_ver: 0.18.1
+kopia_ver: 0.18.2
 kopia_parent_install_dir: /usr/local
 kopia_os_map:
   Linux: linux
@@ -55,3 +55,17 @@ kopia_checksums:
     macOS-x64: sha256:88f4547e54f483a6ae52faad1f2b1e6bf847640e0aadb04e3c7bd18f3c7d061d
     # https://github.com/kopia/kopia/releases/download/v0.18.1/kopia-0.18.1-windows-x64.zip
     windows-x64: sha256:6934a7bd1dfe81db7ba785f65dd3a47c4ce732474906949ef649302cf9b19ada
+  # https://github.com/kopia/kopia/releases/download/v0.18.2/checksums.txt
+  '0.18.2':
+    # https://github.com/kopia/kopia/releases/download/v0.18.2/kopia-0.18.2-linux-arm.tar.gz
+    linux-arm: sha256:42f24fdc001f5e2112b2fcea00b2a68324899e9024e6d8faf8d356a4c306a469
+    # https://github.com/kopia/kopia/releases/download/v0.18.2/kopia-0.18.2-linux-arm64.tar.gz
+    linux-arm64: sha256:71ab00568ebb5c7dcb11b5fa5bcd460e04fe5bfed9b698c65b3e78fd195fe369
+    # https://github.com/kopia/kopia/releases/download/v0.18.2/kopia-0.18.2-linux-x64.tar.gz
+    linux-x64: sha256:8d9d5820bde6e54b68edab31833628293ba6d58dac39318382357eef33e1129d
+    # https://github.com/kopia/kopia/releases/download/v0.18.2/kopia-0.18.2-macOS-arm64.tar.gz
+    macOS-arm64: sha256:d24c6e88187b43eef33837c5e2f37b41568100ccbd1c91ae0452e6c5b255787b
+    # https://github.com/kopia/kopia/releases/download/v0.18.2/kopia-0.18.2-macOS-x64.tar.gz
+    macOS-x64: sha256:333288e5f9f361c86eafa6ccf420b4a2bc48ef578842e044fa588106d00a74c0
+    # https://github.com/kopia/kopia/releases/download/v0.18.2/kopia-0.18.2-windows-x64.zip
+    windows-x64: sha256:9c742611000d18b17eb2840997407cedc1c333045be391e288aabfe9f08dea6b
